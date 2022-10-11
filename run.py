@@ -13,3 +13,6 @@ def shell():
         "Director": Director,
         "Movie": Movie
     }
+
+if __name__ == '__main__':
+    app.run(host="localhost", port=10001, debug=True)
