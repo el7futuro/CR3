@@ -1,12 +1,13 @@
 from typing import Optional
 
+from project.dao import DirectorsDAO
 from project.dao.base import BaseDAO
 from project.exceptions import ItemNotFound
 from project.models import Director
 
 
 class DirectorsService:
-    def __init__(self, dao: BaseDAO) -> None:
+    def __init__(self, dao: DirectorsDAO) -> None:
         self.dao = dao
 
     def get_item(self, pk: int) -> Director:

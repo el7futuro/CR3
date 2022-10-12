@@ -10,32 +10,32 @@ from project.tools.security import generate_password_hash
 class GenresDAO(BaseDAO[Genre]):
     __model__ = Genre
 
-    def __init__(self, session):
-        self.session = session
+    # def __init__(self, session):
+    #     self.session = session
 
-    def get_one(self, bid):
-        return self.session.query(Genre).get(bid)
-
-    def get_all(self):
-        return self.session.query(Genre).all()
+    # def get_one(self, bid):
+    #     return self.session.query(Genre).get(bid)
+    #
+    # def get_all(self):
+    #     return self.session.query(Genre).all()
 
 class DirectorsDAO(BaseDAO[Director]):
     __model__ = Director
 
-    def __init__(self, session):
-        self.session = session
+    # def __init__(self, session):
+    #     self.session = session
 
-    def get_one(self, bid):
-        return self.session.query(Director).get(bid)
-
-    def get_all(self):
-        return self.session.query(Director).all()
+    # def get_one(self, bid):
+    #     return self.session.query(Director).get(bid)
+    #
+    # def get_all(self):
+    #     return self.session.query(Director).all()
 
 class MoviesDAO(BaseDAO[Movie]):
     __model__ = Movie
 
-    def __init__(self, session):
-        self.session = session
+    # def __init__(self, session):
+    #     self.session = session
 
     def get_one(self, bid):
         return self.session.query(Movie).get(bid)
