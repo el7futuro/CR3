@@ -77,7 +77,7 @@ class UserDAO(BaseDAO[User]):
 
     def get_user_by_login(self, login):
         try:
-            stmt = self._db_session.query(self.__model__).filter(self.__model__.email==login).one
+            stmt = self._db_session.query(self.__model__).filter(self.__model__.email == login).one
             return stmt
         except Exception as e:
             print(e)
