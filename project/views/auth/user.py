@@ -9,7 +9,7 @@ api = Namespace('user')
 @api.route('/')
 class RegistrView(Resource):
     @api.marshal_with(user, as_list=True, code=200, description='OK')
-    def pitch(self):
+    def patch(self):
         data = request.json
         header = request.headers.environ.get('HTTP_AUTHORIZATION').replace('Bearer ', '')
 

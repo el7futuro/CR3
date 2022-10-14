@@ -20,7 +20,7 @@ def generate_password_hash(password: str) -> str:
     # TODO: [security] Описать функцию compose_passwords(password_hash: Union[str, bytes], password: str)
 
 
-def compare_passwords(self, password_hash, password) -> bool:
+def compare_passwords(password, password_hash) -> bool:
     decoded_digest = base64.b64decode(password_hash)
     hash_digest = hashlib.pbkdf2_hmac(
         hash_name="sha256",
