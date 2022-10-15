@@ -43,7 +43,7 @@ class UsersService:
 
         data = {
             "email": login,
-            "password": password
+            "password": password_hash
         }
 
         min30 = datetime.datetime.utcnow() + datetime.timedelta(minutes=30)
@@ -59,12 +59,13 @@ class UsersService:
     def approve_refresh_token(self, refresh_token):
         data = jwt.decode(jwt=refresh_token, key=secret, algorithms=[algo])
         login = data.get('email')
+        password_hash = data.get('password')
 
         user = self.get_user_by_login(login)
         if user is None:
             raise abort(404)
 
-        return self.generate_tokens(login, user.password)
+        return self.generate_tokens(login, user.password, password_hash)
 
     def check(self, login, password):
         user = self.get_user_by_login(login)
@@ -87,5 +88,5 @@ class UsersService:
     def update_password(self, data, refresh_token):
         user = self.get_user_by_token(refresh_token)
         if user:
-            self.dao.update(login=user.email, data={"password": generate_password_hash(data.get('password 2'))})
-            return self.check(login=user.email, password=data.get('password_2'))
+            self.dao.update(login=user.email, data={"password": generate_password_hash(data.get('new_password'))})
+            return self.check(login=user.email, password=data.get('new_password'))

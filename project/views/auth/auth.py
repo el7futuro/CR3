@@ -6,7 +6,7 @@ from project.setup.api.models import user
 
 api = Namespace('auth')
 
-@api.route('/registr/')
+@api.route('/register/')
 class RegistrView(Resource):
     @api.marshal_with(user, as_list=True, code=200, description='OK')
     def post(self):
