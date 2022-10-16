@@ -77,6 +77,7 @@ class UsersService:
     def get_user_by_token(self, refresh_token):
         data = jwt.decode(jwt=refresh_token, key=secret, algorithms=[algo])
         if data:
+
             return self.get_user_by_login(data.get('email'))
 
     def update_user(self, data, refresh_token):
@@ -87,6 +88,8 @@ class UsersService:
 
     def update_password(self, data, refresh_token):
         user = self.get_user_by_token(refresh_token)
+        if not security.compare_passwords(password=data.get('old_password'), password_hash=user.password):
+            raise abort(400)
         if user:
             self.dao.update(login=user.email, data={"password": generate_password_hash(data.get('new_password'))})
             return self.check(login=user.email, password=data.get('new_password'))
